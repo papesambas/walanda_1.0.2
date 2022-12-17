@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Personnels index
+{% endblock %}
+
+{% block body %}
+    <h1>Personnels index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom et Prénom</th>
+                <th>Sexe</th>
+                <th>Type de Contrat</th>
+                <th>Profession</th>
+                <th>Niveau d'étude</th>
+                <th>Spécialités</th>
+                <th>Département</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for personnel in personnels %}
+                <tr>
+                    <td>{{ personnel.id }}</td>
+                    <td>{{ personnel.fullName }}</td>
+                    {#<td>{{ personnel.updatedAt ? personnel.updatedAt|date('Y-m-d H:i:s') : '' }}</td>#}
+                    <td>{{ personnel.sexe }}</td>
+                    {#<td>{{ personnel.isActif ? 'Yes' : 'No' }}</td>#}
+                    <td>
+                        {% for contrat in personnel.contrats %}
+                            {{ contrats.type }}
+                        {% endfor %}
+                    </td>
+                    {#<td>{{ personnel.dateNaissance ? personnel.dateNaissance|date('Y-m-d') : '' }}</td>#}
+                    <td>{{ personnel.profession }}</td>
+                    <td>{{ personnel.niveauEtude }}</td>
+                    <td>
+                        {% for specialite in personnel.specialite %}
+                            {{ specialite.designation }}
+                        {% endfor %}
+                    </td>
+                    {#<td>{{ personnel.createdAt ? personnel.createdAt|date('Y-m-d H:i:s') : '' }}</td>#}
+                    <td>{{ personnel.departement }}</td>
+                    <td>
+                        <a href="{{ path('app_personnels_show', {'id': personnel.id}) }}">
+                            show</a>
+                        <a href="{{ path('app_personnels_edit', {'id': personnel.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="12">no records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_personnels_new') }}">Create new</a>
+{% endblock %}
