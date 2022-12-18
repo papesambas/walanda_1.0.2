@@ -20,23 +20,32 @@ import { Tooltip, Toast, Popover } from 'bootstrap';
 
 import * as Popper from "@popperjs/core"
 
-const $ = require('jquery');
+import $ from "jquery";
+//const $ = require('jquery');
 
 import jquery from 'jquery';
+
 import 'jquery-ui';
 
 global.$ = global.jQuery = $;
 
 require('bootstrap');
 
-
-
 import '/node_modules/bootstrap/dist/css/bootstrap.min.css';
+
 import '/node_modules/jquery-ui/themes/base/theme.css';
 
+require('select2')($);
 
-import 'select2';
+import './select2';
+
 import './datepicker.js';
 
 import './recrutements';
 //import './personnels';
+
+import greet from './greet';
+
+$(document).ready(function () {
+    $('body').prepend('<h1>' + greet('Mr SIDIBE') + '</h1>');
+});

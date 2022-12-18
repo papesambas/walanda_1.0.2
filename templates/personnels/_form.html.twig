@@ -1,4 +1,43 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="row border border-3 rounded-2 py-2 my-2 bg-secondary bg-opacity-10">
+    <h4 class="text-capitalize text-center text-danger fst-italic">Informations civiques</h4>
+    <div class="col-md-6 ">
+        <div class="row">
+            <div class="col-md-6 mt-2">{{ form_widget(form.nom) }}</div>
+            <div class="col-md-6 mt-2">{{ form_widget(form.prenom) }}</div>
+            <div class="col-md-3 mt-2">{{ form_widget(form.sexe) }}</div>
+            <div class="col-md-3 mt-2">{{ form_widget(form.dateNaissance) }}</div>
+
+        </div>
+    </div>
+    <div class="col-md-6 ">
+        <div class="row ">
+            <div class="col-md-6 mt-2">{{ form_widget(form.region) }}</div>
+            <div class="col-md-6 mt-2">Cercle</div>
+            <div class="col-md-6 mt-2">Commune</div>
+            <div class="col-md-6 mt-2">{{ form_widget(form.lieuNaissance) }}</div>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-2 mt-2">{{ form_widget(form.situationMatrimoniale) }}</div>
+        <div class="col-md-2 mt-2">{{ form_widget(form.nbEnfants) }}</div>
+        <div class="col-md-6 mt-2">{{ form_widget(form.adresse) }}</div>
+        <div class="col-md-2 mt-2">{{ form_widget(form.telephone) }}</div>
+    </div>
+
+</div>
+
+<div class="row border border-3 rounded-2 py-2 my-2 bg-secondary bg-opacity-25">
+    <h4 class="text-capitalize text-center text-danger fst-italic">Informations professionnelles</h4>
+
+    <div class="col-md-4 mt-2">{{ form_widget(form.niveauEtude) }}</div>
+    <div class="col-md-4 mt-2">{{ form_widget(form.specialite) }}</div>
+    <div class="col-md-4 mt-2">{{ form_widget(form.profession) }}</div>
+    <div class="col-md-4 mt-2">{{ form_widget(form.departement) }}</div>
+    <div class="col-md-4 mt-2">{{ form_widget(form.etablissement) }}</div>
+    <div class="col-md-4 mt-2"></div>
+</div>
+
+
+<button class="btn btn-primary">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

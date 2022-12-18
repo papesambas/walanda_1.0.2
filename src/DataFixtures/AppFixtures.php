@@ -133,7 +133,7 @@ class AppFixtures extends Fixture
         }
 
 
-        for ($i = 1; $i <= 45; $i++) {
+        for ($i = 1; $i <= 175; $i++) {
             $commune = new Communes();
             $cercle = $this->getReference('cercle_' . $faker->numberBetween(1, 23));
             $commune->setCercle($cercle);
@@ -142,23 +142,23 @@ class AppFixtures extends Fixture
             $this->addReference('commune_' . $i, $commune);
         }
 
-        for ($i = 1; $i <= 175; $i++) {
+        for ($i = 1; $i <= 2000; $i++) {
             $lieu = new LieuNaissances();
-            $commune = $this->getReference('commune_' . $faker->numberBetween(1, 45));
+            $commune = $this->getReference('commune_' . $faker->numberBetween(1, 175));
             $lieu->setCommune($commune);
-            $lieu->setDesignation($faker->streetName);
+            $lieu->setDesignation($faker->city());
             $manager->persist($lieu);
             $this->addReference('lieu_' . $i, $lieu);
         }
 
-        for ($i = 1; $i <= 75; $i++) {
+        for ($i = 1; $i <= 25; $i++) {
             $specialite = new Specialites();
             $specialite->setDesignation('Spécialité' . '_' . $i);
             $manager->persist($specialite);
             $this->addReference('specialite_' . $i, $specialite);
         }
 
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 6; $i++) {
             $departement = new Departements();
             $departement->setDesignation('Département' . '_' . $i);
             $manager->persist($departement);
@@ -186,7 +186,7 @@ class AppFixtures extends Fixture
             $this->addReference('periode_' . $i, $periode);
         }
 
-        for ($i = 1; $i <= 25; $i++) {
+        for ($i = 1; $i <= 15; $i++) {
             $statut = new Statuts();
             $statut->setDesignation("statut" . '_' . $i);
             $manager->persist($statut);
@@ -227,7 +227,7 @@ class AppFixtures extends Fixture
         }
 
         for ($i = 1; $i <= 8; $i++) {
-            $departement = $this->getReference('departement_' . $faker->numberBetween(1, 7));
+            $departement = $this->getReference('departement_' . $faker->numberBetween(1, 6));
             $etablissement = $this->getReference('etablissement_' . $faker->numberBetween(1, 1));
             $lieu = $this->getReference('lieu_' . $faker->numberBetween(1, 100));
             $nom  = $this->getReference('nom_' . $faker->numberBetween(1, 50));

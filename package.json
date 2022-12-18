@@ -30,7 +30,7 @@
         "bootstrap": "5.2.3",
         "bootstrap-datepicker": "^1.9.0",
         "css-loader": "^6.7.2",
-        "jquery": "^3.6.1",
+        "jquery": "^3.6.2",
         "jquery-ui": "^1.13.2",
         "js-datepicker": "^5.18.2",
         "select2": "^4.1.0-rc.0",
