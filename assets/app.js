@@ -42,7 +42,8 @@ import './select2';
 import './datepicker.js';
 
 import './recrutements';
-//import './personnels';
+
+import './personnels';
 
 import greet from './greet';
 

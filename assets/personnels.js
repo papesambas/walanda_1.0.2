@@ -6,7 +6,7 @@ $(document).on('change', '#personnels_region, #personnels_cercle, #personnels_co
     let target = '#' + $field.attr('id').replace('commune', 'lieuNaissance').replace('cercle', 'commune').replace('region', 'cercle')
     let data = {}
     data[$regionField.attr('name')] = $regionField.val()
-    //data[$cercleField.attr('name')] = $cercleField.val()
+    data[$cercleField.attr('name')] = $cercleField.val()
     data[$field.attr('name')] = $field.val()
 
     $.ajax({

@@ -1,59 +1,108 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Personnels{% endblock %}
+{% block title %}Personnels
+{% endblock %}
 
 {% block body %}
     <h1>Personnels</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ personnel.id }}</td>
-            </tr>
-            <tr>
-                <th>Sexe</th>
-                <td>{{ personnel.sexe }}</td>
-            </tr>
-            <tr>
-                <th>DateNaissance</th>
-                <td>{{ personnel.dateNaissance ? personnel.dateNaissance|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ personnel.adresse }}</td>
-            </tr>
-            <tr>
-                <th>Telephone</th>
-                <td>{{ personnel.telephone }}</td>
-            </tr>
-            <tr>
-                <th>SituationMatrimoniale</th>
-                <td>{{ personnel.situationMatrimoniale }}</td>
-            </tr>
-            <tr>
-                <th>NbEnfants</th>
-                <td>{{ personnel.nbEnfants }}</td>
-            </tr>
-            <tr>
-                <th>FullName</th>
-                <td>{{ personnel.fullName }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ personnel.createdAt ? personnel.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ personnel.updatedAt ? personnel.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>IsActif</th>
-                <td>{{ personnel.isActif ? 'Yes' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Nom et Prénom</th>
+                        <td>{{ personnel.fullName }}</td>
+                    </tr>
+                    <tr>
+                        <th>Sexe</th>
+                        <td>{{ personnel.sexe }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date de Naissance</th>
+                        <td>{{ personnel.dateNaissance ? personnel.dateNaissance|date('Y-m-d') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Lieu de Naissance</th>
+                        <td>{{ personnel.lieuNaissance }}</td>
+                    </tr>
+                    <tr>
+                        <th>Commune de</th>
+                        <td>{{ personnel.lieuNaissance.commune.designation }}</td>
+                    </tr>
+                    <tr>
+                        <th>Cercle de</th>
+                        <td>{{ personnel.lieuNaissance.commune.cercle.designation }}</td>
+                    </tr>
+                    <tr>
+                        <th>Région de</th>
+                        <td>{{ personnel.lieuNaissance.commune.cercle.region.designation }}</td>
+                    </tr>
+                    <tr>
+                        <th>Situation Matrimoniale</th>
+                        <td>{{ personnel.situationMatrimoniale }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nbre d'Enfants</th>
+                        <td>{{ personnel.nbEnfants }}</td>
+                    </tr>
+                    <tr>
+                        <th>Domicilié(e) à :</th>
+                        <td>{{ personnel.adresse }}</td>
+                    </tr>
+                    <tr>
+                        <th>Telephone</th>
+                        <td>{{ personnel.telephone }}</td>
+                    </tr>
+                    <tr>
+                        <th>CreatedAt</th>
+                        <td>{{ personnel.createdAt ? personnel.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>UpdatedAt</th>
+                        <td>{{ personnel.updatedAt ? personnel.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>en Activité :</th>
+                        <td>{{ personnel.isActif ? 'Yes' : 'No' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Niveau d'étude</th>
+                        <td>{{ personnel.niveauEtude }}</td>
+                    </tr>
+                    <tr>
+                        <th>Profession</th>
+                        <td>{{ personnel.profession }}</td>
+                    </tr>
+                    <tr>
+                        <th>Spécialité</th>
+                        <td>
+                            {% for specialite in personnel.specialite %}
+                                {{ specialite.designation}}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Département</th>
+                        <td>{{ personnel.departement }}</td>
+                    </tr>
+                    <tr>
+                        <th>Etablissement</th>
+                        <td>
+                            {% for etablissement in personnel.etablissement %}
+                                {{ etablissement.designation}}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <a href="{{ path('app_personnels_index') }}">back to list</a>
 
     <a href="{{ path('app_personnels_edit', {'id': personnel.id}) }}">edit</a>

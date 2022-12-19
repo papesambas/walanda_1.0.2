@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PersonnelsRepository::class)]
 class Personnels implements TimestampedInterface
@@ -25,7 +26,7 @@ class Personnels implements TimestampedInterface
     #[ORM\JoinColumn(nullable: false)]
     private ?Prenoms $prenom = null;
 
-    #[ORM\Column(length: 1)]
+    #[ORM\Column(length: 8)]
     private ?string $sexe = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
@@ -33,6 +34,7 @@ class Personnels implements TimestampedInterface
 
     #[ORM\ManyToOne(inversedBy: 'personnels')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank()]
     private ?LieuNaissances $lieuNaissance = null;
 
     #[ORM\Column(length: 255)]
@@ -125,24 +127,24 @@ class Personnels implements TimestampedInterface
         return $this;
     }
 
-    public function getSexe(): ?string
+    public function getSexe()
     {
         return $this->sexe;
     }
 
-    public function setSexe(string $sexe): self
+    public function setSexe($sexe): self
     {
         $this->sexe = $sexe;
 
         return $this;
     }
 
-    public function getDateNaissance(): ?\DateTimeInterface
+    public function getDateNaissance()
     {
         return $this->dateNaissance;
     }
 
-    public function setDateNaissance(\DateTimeInterface $dateNaissance): self
+    public function setDateNaissance($dateNaissance): self
     {
         $this->dateNaissance = $dateNaissance;
 
@@ -161,12 +163,12 @@ class Personnels implements TimestampedInterface
         return $this;
     }
 
-    public function getAdresse(): ?string
+    public function getAdresse()
     {
         return $this->adresse;
     }
 
-    public function setAdresse(string $adresse): self
+    public function setAdresse($adresse): self
     {
         $this->adresse = $adresse;
 
@@ -245,12 +247,12 @@ class Personnels implements TimestampedInterface
         return $this;
     }
 
-    public function getSituationMatrimoniale(): ?string
+    public function getSituationMatrimoniale()
     {
         return $this->situationMatrimoniale;
     }
 
-    public function setSituationMatrimoniale(string $situationMatrimoniale): self
+    public function setSituationMatrimoniale($situationMatrimoniale): self
     {
         $this->situationMatrimoniale = $situationMatrimoniale;
 
