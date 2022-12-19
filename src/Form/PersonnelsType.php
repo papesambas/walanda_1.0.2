@@ -22,6 +22,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormEvent;
@@ -183,6 +184,12 @@ class PersonnelsType extends AbstractType
                         ->orderBy('r.designation', 'ASC');
                 },
 
+            ])
+            ->add('contrats', CollectionType::class, [
+                "entry_type" => ContratsType::class,
+                "by_reference" => false,
+                "allow_add" => true,
+                "allow_delete" => true,
             ]);
         $builder->get('region')->addEventListener(
             FormEvents::POST_SUBMIT,

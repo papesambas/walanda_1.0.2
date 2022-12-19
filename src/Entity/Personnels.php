@@ -79,7 +79,8 @@ class Personnels implements TimestampedInterface
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'personnel', targetEntity: Contrats::class)]
+    #[ORM\OneToMany(mappedBy: 'personnel', targetEntity: Contrats::class, cascade: ['persist'])]
+    #[Assert\Count(max: 2)]
     private Collection $contrats;
 
     #[ORM\Column]

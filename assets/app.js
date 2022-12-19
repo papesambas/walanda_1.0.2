@@ -11,42 +11,31 @@ import './styles/app.scss';
 // start the Stimulus application
 import './bootstrap';
 
-import 'bootstrap';
-
-// Import all of Bootstrap's JS
-import * as bootstrap from 'bootstrap'
-
-import { Tooltip, Toast, Popover } from 'bootstrap';
-
-import * as Popper from "@popperjs/core"
-
-import $ from "jquery";
-//const $ = require('jquery');
-
-import jquery from 'jquery';
-
-import 'jquery-ui';
-
-global.$ = global.jQuery = $;
-
+const $ = require('jquery');
+// this "modifies" the jquery module: adding behavior to it
+// the bootstrap module doesn't export/return anything
 require('bootstrap');
 
-import '/node_modules/bootstrap/dist/css/bootstrap.min.css';
-
-import '/node_modules/jquery-ui/themes/base/theme.css';
-
-require('select2')($);
-
-import './select2';
-
-import './datepicker.js';
-
-import './recrutements';
-
-import './personnels';
-
-import greet from './greet';
+// or you can include specific pieces
+// require('bootstrap/js/dist/tooltip');
+// require('bootstrap/js/dist/popover');
 
 $(document).ready(function () {
-    $('body').prepend('<h1>' + greet('Mr SIDIBE') + '</h1>');
+    $('[data-toggle="popover"]').popover();
 });
+
+document.addEventListener('turbo:load', function (e) {
+    // this enables bootstrap tooltips globally
+    let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new Tooltip(tooltipTriggerEl)
+    });
+});
+
+require('bootstrap-star-rating');
+
+require('bootstrap-star-rating/css/star-rating.css');
+
+require('bootstrap-star-rating/themes/krajee-svg/theme.css');
+
+import './select2';
